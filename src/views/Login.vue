@@ -40,12 +40,10 @@ import { required, email, minLength } from 'vuelidate/lib/validators'
         email: '',
         password: '',
             rules: {
-        required: value => !!value || 'Required.',
-        min: v => v.length >= 8 || "Min 8",
+        required: value => !!value || 'Required',
+        min: v => v.length >= 8 || "Minimum 8 Characters",
       },
       }
-      
-      
     },
     validations: {
         email: {
