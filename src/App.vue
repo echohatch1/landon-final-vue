@@ -1,43 +1,75 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/about2">About-2</router-link> |
-      <router-link to="/layout">Layout</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/remote">Remote</router-link>
-    </div>
-    <router-view/>
-  </div>
+<div id="app-layout">
+<v-app>
+    <v-navigation-drawer app v-model="drawer" clipped>
+      <v-toolbar flat>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title class="title">
+              Navigation
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+  
+      <v-divider></v-divider>
+  
+      <v-list dense class="pt-0">
+        <v-list-tile
+          v-for="item in items"
+          :key="item.title"
+          @click="navigateRoutes(item.routeNumber)"
+        >
 
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+        <v-toolbar app clipped-left>
+            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <h2>Nav</h2>
+        </v-toolbar>
+            <v-content>
+                <v-container fluid>
+                  
+                    <div v-box-shadow:offset="2"><router-view/></div>
+                </v-container>
+            </v-content>
+        <v-footer app>Footer</v-footer>
+</v-app>
+</div>
 </template>
 
 <script>
 export default {
-  
+
+    data () {
+        return {
+            drawer: null,
+            items: [
+        { title: 'Home', icon: 'dashboard', route: '/home', routeNumber: 0 },
+        { title: 'About', icon: 'question_answer', route: '/about', routeNumber: 1 },
+        { title: 'Login', icon: 'account_circle', route: '/login', routeNumber: 2},
+      ],
+      right: null
+        }
+    },
+    methods: {
+        navigateRoutes(routeNumber) {
+            this.$router.push(this.items[routeNumber].route);
+        }
+    }
 }
 </script>
 
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

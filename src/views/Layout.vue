@@ -1,4 +1,5 @@
 <template>
+<div id="app-layout">
 <v-app>
     <!-- <v-navigation-drawer app v-model="drawer" clipped>Nav
         <div id="nav">
@@ -43,24 +44,26 @@
     </v-navigation-drawer>
         <v-toolbar app clipped-left>
             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-    <router-view/>
         </v-toolbar>
             <v-content>
                 <v-container fluid>
+                  <router-view/>
                     <div v-box-shadow:offset="2">Content</div>
                 </v-container>
             </v-content>
         <v-footer app>Footer</v-footer>
 </v-app>
+</div>
 </template>
 
 <script>
 export default {
+
     data () {
         return {
             drawer: null,
             items: [
-        { title: 'Home', icon: 'dashboard', route: '/', routeNumber: 0 },
+        { title: 'Home', icon: 'dashboard', route: '/layout', routeNumber: 0 },
         { title: 'About', icon: 'question_answer', route: '/about', routeNumber: 1 },
         { title: 'Login', icon: 'account_circle', route: '/login', routeNumber: 2},
       ],
@@ -77,8 +80,5 @@ export default {
 
 
 <style>
-#nav li {
-    background: red;
-    color: red;
-}
+
 </style>
