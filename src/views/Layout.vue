@@ -27,10 +27,8 @@
         <v-list-tile
           v-for="item in items"
           :key="item.title"
-          @click=""
+          @click="navigateRoutes(item.routeNumber)"
         >
-
-<router-link :to="" tag="li">
 
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -39,8 +37,6 @@
           <v-list-tile-content>
             <v-list-tile-title>{{ item.title }}</v-list-tile-title>
           </v-list-tile-content>
-
-</router-link>
 
         </v-list-tile>
       </v-list>
@@ -64,13 +60,18 @@ export default {
         return {
             drawer: null,
             items: [
-        { title: 'Home', icon: 'dashboard', route: '/' },
-        { title: 'About', icon: 'question_answer', route: '/about' },
-        { title: 'Login', icon: 'account_circle', route: '/login' },
+        { title: 'Home', icon: 'dashboard', route: '/', routeNumber: 0 },
+        { title: 'About', icon: 'question_answer', route: '/about', routeNumber: 1 },
+        { title: 'Login', icon: 'account_circle', route: '/login', routeNumber: 2},
       ],
       right: null
         }
     },
+    methods: {
+        navigateRoutes(routeNumber) {
+            this.$router.push(this.items[routeNumber].route);
+        }
+    }
 }
 </script>
 
