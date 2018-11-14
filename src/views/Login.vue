@@ -1,68 +1,69 @@
 <template>
-<v-container>
-    <v-layout>
-        <v-flex xs6 offset-sm3>
-            <v-card>
-              <v-form @submit.prevent="onSubmit">
-                  <v-text-field
-                    label="Username"
-                    name="username"
-                    v-model.lazy="username"
-                    :type="show1 ? 'text' : 'username'"
-                    :rules="[rules.required, rules.min]"
-                    validate-on-blur=""
-                    error="Pass"
-                  ></v-text-field>
+<form>
+    <v-text-field
+      v-model="username"
+      :error-messages="usernameErrors"
+      :counter="10"
+      label="Username"
+      required
+      @input="$v.username.$touch()"
+      @blur="$v.username.$touch()"
+    ></v-text-field>
+    <v-text-field
+      v-model="password"
+      :error-messages="passwordErrors"
+      label="Password"
+      required
+      @input="$v.password.$touch()"
+      @blur="$v.password.$touch()"
+    ></v-text-field>
 
-                  <v-text-field
-                    label="Password"
-                    name="password"
-                    v-model.lazy="password"
-                    :type="show1 ? 'text' : 'password'"
-                    :rules="[rules.required, rules.min]"
-                    validate-on-blur=""
-                    error="Pass"
-                  ></v-text-field>
-              </v-form>
-           </v-card>
-        </v-flex>
-    </v-layout>
-</v-container>
+    <v-btn @click="submit" class="green darken-3" style="color: white;">Login</v-btn>
+  </form>
 </template>
 
 <script>
-import { required, email, minLength } from 'vuelidate/lib/validators';
-
+ import { validationMixin } from 'vuelidate'
+  import { required, maxLength, minLength } from 'vuelidate/lib/validators'
 
   export default {
-    data () {
-      return {
-        show1: false,
-        email: '',
-        password: '',
-            rules: {
-        required: value => !!value || 'Required',
-        min: v => v.length >= 8 || "Minimum 8 Characters",
-      },
-      }
-    },
+    mixins: [validationMixin],
+
     validations: {
-        email: {
-          required,
-          email,
-        },
+      username: { required, maxLength: maxLength(10) },
+      password: { required, minLength: minLength(4) },
+    },
+
+    data: () => ({
+      username: '',
+      password: '',
+    }),
+
+    computed: {
+      usernameErrors () {
+        const errors = []
+        if (!this.$v.username.$dirty) return errors
+        !this.$v.username.maxLength && errors.push('Username must be at most 10 characters long')
+        !this.$v.username.required && errors.push('Username is required.')
+        return errors
+      },
+      passwordErrors () {
+        const errors = []
+        if (!this.$v.password.$dirty) return errors
+        !this.$v.password.minLength && errors.push('Must be at least 4 characters long')
+        !this.$v.password.required && errors.push('Password is required')
+        return errors
+      }
     },
 
     methods: {
-        onSubmit() {
-          console.log('Thans for submitting!')
-        }
+      submit () {
+        this.$v.$touch()
+      },
     }
   }
 </script>
 
 <style>
-.input.invalid div{
-    border: 1px solid red;
-}
+
 </style>

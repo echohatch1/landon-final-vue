@@ -32,9 +32,9 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-        <v-toolbar app clipped-left>
-            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-            <h2>Nav</h2>
+        <v-toolbar app clipped-left class="green darken-3">
+            <v-toolbar-side-icon @click.stop="drawer = !drawer" style="color: white;"></v-toolbar-side-icon>
+            <h2 style="color: white;">Nav</h2>
         </v-toolbar>
             <v-content>
                 <v-container fluid>
@@ -54,8 +54,8 @@ export default {
         return {
             drawer: null,
             items: [
-        { title: 'Home', icon: 'dashboard', route: '/home', routeNumber: 0 },
-        { title: 'About', icon: 'question_answer', route: '/about', routeNumber: 1 },
+        { title: 'Home', icon: 'home', route: '/home', routeNumber: 0 },
+        { title: 'About', icon: 'info', route: '/about', routeNumber: 1 },
         { title: 'Login', icon: 'account_circle', route: '/login', routeNumber: 2},
       ],
       right: null
