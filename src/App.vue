@@ -42,7 +42,7 @@
                     <div v-box-shadow:offset="2"><router-view/></div>
                 </v-container>
             </v-content>
-        <v-footer app>Footer</v-footer>
+        <v-footer app><v-layout justify-center><span>©2018 Landon Hatch | Images from <a href="https://unsplash.com/">Unsplash API</a></span></v-layout></v-footer>
 </v-app>
 </div>
 </template>
@@ -71,5 +71,7 @@ export default {
 
 
 <style>
-
+a {
+  text-decoration: none;
+}
 </style>
