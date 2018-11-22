@@ -27,12 +27,31 @@
           <figcaption><h3>{{ result.description.toUpperCase() }}</h3></figcaption>
           <img class="main-images":src="result.urls.small"/>
           </figure>
-          <v-container>
 
-          <img class="profile-images":src="result.user.profile_image.small"/>
-          {{ result.user.username }}
+          <v-layout class="card-links" align-center justify-space-between row fill-height>
+            <v-container>
 
-          </v-container>
+            <v-btn class="avatar" large flat round color="black" :href="result.user.portfolio_url">
+              
+                <v-list-tile-avatar>
+                  <img class="profile-images":src="result.user.profile_image.small"/>
+                </v-list-tile-avatar>
+              
+          <v-link flat color="black">{{ result.user.username }}</v-link>
+            </v-btn>
+
+            </v-container>
+
+            <v-container>
+              <v-layout justify-end>
+                <v-btn class="download-button" flat round fab color="black" :href="result.links.download">
+                  <v-icon>cloud_download</v-icon>
+                </v-btn>
+              </v-layout>
+            </v-container>
+          
+          </v-layout>
+
         </v-card>
       </v-flex>
 
@@ -80,6 +99,7 @@ export default {
 .results figure {
   padding: 20px;
   padding-top: 10px;
+  padding-bottom: 0;
 }
 .results figure figcaption {
 
@@ -87,6 +107,17 @@ export default {
 .results .main-images {
     width: 100%;
 }
+
+
+.avatar {
+  padding-left: 0;
+  margin:0;
+}
+
+.download-button {
+  margin-right: 0;
+}
+
 h1, h2 {
   font-weight: normal;
 }
