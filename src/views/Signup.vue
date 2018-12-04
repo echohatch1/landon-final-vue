@@ -19,23 +19,7 @@
       @blur="$v.password.$touch()"
     ></v-text-field>
 
-    
-
-<v-container fluid grid-list-md>
-  <v-layout align-center justify-space-between row fill-height>
-    <v-flex text-xs-left>
-      <v-btn @click="submit" class="green darken-3" style="color: white;">Login</v-btn>
-    </v-flex>
-
-    <v-flex text-xs-right>
-  <router-link tag="ul" to="/signup">
-  <span>Don't have an account? </span>
-  <a>Sign Up</a>
-</router-link>
-    </v-flex>
-  </v-layout>
-</v-container>
-
+    <v-btn @click="submit" class="green darken-3" style="color: white;">Login</v-btn>
   </form>
 </template>
 
