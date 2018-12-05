@@ -57,7 +57,6 @@ export default {
         { title: 'Home', icon: 'home', route: '/home', routeNumber: 0 },
         { title: 'About', icon: 'info', route: '/about', routeNumber: 1 },
         { title: 'Login', icon: 'account_circle', route: '/login', routeNumber: 2},
-        { title: 'Signup', icon: 'account_circle', route: '/signup', routeNumber: 3},
       ],
       right: null
         }

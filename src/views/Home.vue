@@ -20,44 +20,55 @@
     </form>
     <div class="results" v-if="results">
 
-      <v-layout row wrap>
+     <v-container fluid> 
+      <v-layout wrap>
 
-      <v-flex d-flex xs12 md6 lg4 v-for="result in results">
+      <v-flex d-flex xs12 sm6 md6 v-for="result in results">
         <v-card class="card">
 
+          <v-container>
+          <v-flex>
           <figure>
           <img class="main-images":src="result.urls.small"/>
               <figcaption><h3>{{ result.description }}</h3></figcaption>
           </figure>
+          </v-flex>
+          </v-container>
 
-          <v-layout class="card-links" align-center>
-   
-
-            <v-layout justify-start>
+<v-container>
+          <v-layout justify-space-between align-center row wrap>
+ 
             <v-btn class="avatar" large flat round color="black" :href="result.user.portfolio_url">
                 <v-list-tile-avatar>
                   <img class="profile-images":src="result.user.profile_image.small"/>
                 </v-list-tile-avatar>
               
-          <v-link flat color="black">{{ result.user.username }}</v-link>
+          <a flat color="black">{{ result.user.username }}</a>
             </v-btn>
-            </v-layout>
+ 
+            
 
+                <v-btn @click="toggleHeart (result.id)" class="like-button" flat round fab color="black">
+                  <v-icon class="like-button" :id="result.id">favorite_border</v-icon>
+                </v-btn>
+  
 
-       
-              <v-layout justify-end>
                 <v-btn class="download-button" flat round fab color="black" :href="result.links.download">
                   <v-icon>cloud_download</v-icon>
                 </v-btn>
-              </v-layout>
+
+          </v-layout>
+</v-container>
+
 
           
-          </v-layout>
+   
 
         </v-card>
       </v-flex>
 
       </v-layout>
+     </v-container>
     </div>
   </div>
 </template>
@@ -75,6 +86,7 @@ export default {
       CLIENT_ID: "fc990c021cadd00f117a7b494c3ffd581a3a83c6001dd7ffd933d4415bbb653d",
       numResults: '',
       select: null,
+      liked: false,
       items: [
         '10',
         '20',
@@ -91,6 +103,33 @@ export default {
             console.log(response.data);
             this.results = response.data;
         });
+      },
+      toggleHeart (likedId) {
+        console.log(likedId);
+
+        var el = document.getElementById(likedId);
+        var iconColor = "black";
+        var heartIcon = '';
+        var value = el.innerHTML;
+
+            //if it's current value is set to favorite
+        if (value === "favorite") {
+            //set value to the opposite
+            heartIcon = "favorite_border";
+            iconColor = "black";
+            console.log("unliked!");
+            
+            //otherwise if current value is set to favorite_border
+        } else if (value === "favorite_border") {
+            //set value to the opposite
+            heartIcon = "favorite";
+            iconColor = "red";
+            console.log("liked!");
+        }
+        
+        el.innerHTML = heartIcon;
+        el.style.color = iconColor;
+        return heartIcon;
       }
   }
 }
@@ -103,9 +142,11 @@ export default {
   padding-top: 10px;
   padding-bottom: 0;
 }*/
-.card {
-  padding: 20px;
+
+.myStyle {
+  color: blue;
 }
+
 .results figure figcaption {
   font-size: 10px;
 }
@@ -113,18 +154,10 @@ export default {
     width: 100%;
 }
 
-.profile-images {
-  margin: 0;
-}
-
 .avatar {
   padding-left: 0;
-  margin-left: 0;
 }
 
-.download-button {
-  margin-right: 0;
-}
 
 h1, h2 {
   font-weight: normal;
