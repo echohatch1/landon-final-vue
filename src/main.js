@@ -7,6 +7,15 @@ import Vuelidate from 'vuelidate';
 
 Vue.use(Vuelidate)
 
+//custom directives
+Vue.directive('smiley-face', {
+  bind(el, binding, vnode) {
+    el.innerHTML = ':('
+    el.style.color = 'rgb(180, 80, 80)';
+    el.style.fontSize = '30px';
+  }
+})
+
 Vue.directive('box-shadow', {
   bind(el, binding, vnode) {
     if (binding.arg === 'offset') {

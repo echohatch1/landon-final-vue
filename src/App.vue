@@ -34,7 +34,8 @@
       </v-toolbar>
       <v-content>
         <v-container fluid>
-          <div v-box-shadow:offset="2" class="main">
+          <!--Custom Directive-->
+          <div v-box-shadow:offset="1" class="main">
             <router-view/>
           </div>
         </v-container>

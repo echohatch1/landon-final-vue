@@ -62,7 +62,9 @@
     </div>
     <div v-else>
       <router-link tag="ul" to="/home">
-        <h3>No Favorites to Display :(</h3>
+      
+        <!--Custom Directive-->
+        <h3>No Favorites to Display <span v-smiley-face></span></h3>
         <br>
         <a>Search images to add some!</a>
       </router-link>
