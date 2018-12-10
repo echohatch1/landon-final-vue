@@ -12,7 +12,7 @@ Vue.directive('box-shadow', {
     if (binding.arg === 'offset') {
       el.style.boxShadow = `0px ${binding.value}px 5px #222`
     } else {
-    el.style.boxShadow = `0px 3px 5px #666`
+      el.style.boxShadow = `0px 3px 5px #666`
     }
   }
 })

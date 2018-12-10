@@ -1,5 +1,5 @@
 <template>
-<form>
+  <form>
     <v-text-field
       v-model="firstName"
       :error-messages="firstNameErrors"
@@ -47,76 +47,82 @@
 </template>
 
 <script>
- import { validationMixin } from 'vuelidate'
-  import { required, maxLength, minLength, sameAs, email, alpha } from 'vuelidate/lib/validators'
+import { validationMixin } from "vuelidate";
+import {
+  required,
+  maxLength,
+  minLength,
+  sameAs,
+  email,
+  alpha
+} from "vuelidate/lib/validators";
 
-  export default {
-    mixins: [validationMixin],
+export default {
+  mixins: [validationMixin],
 
-    data: () => ({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      passwordConfirm: '',
-    }),
+  data: () => ({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    passwordConfirm: ""
+  }),
 
-    validations: {
-      firstName: { required, alpha },
-      lastName: { required, alpha },
-      email: { required, email },
-      password: { required, minLength: minLength(4) },
-      passwordConfirm: { sameAsPassword: sameAs('password') },
+  validations: {
+    firstName: { required, alpha },
+    lastName: { required, alpha },
+    email: { required, email },
+    password: { required, minLength: minLength(4) },
+    passwordConfirm: { sameAsPassword: sameAs("password") }
+  },
+
+  computed: {
+    firstNameErrors() {
+      const errors = [];
+      if (!this.$v.firstName.$dirty) return errors;
+      !this.$v.firstName.alpha && errors.push("Must contain only letters");
+      !this.$v.firstName.required && errors.push("First name is required");
+      return errors;
     },
-
-    computed: {
-
-
-      firstNameErrors () {
-        const errors = []
-        if (!this.$v.firstName.$dirty) return errors
-        !this.$v.firstName.alpha && errors.push('Must contain only letters')
-        !this.$v.firstName.required && errors.push('First name is required')
-        return errors
-      },
-      lastNameErrors () {
-        const errors = []
-        if (!this.$v.lastName.$dirty) return errors
-        !this.$v.firstName.alpha && errors.push('Must contain only letters')
-        !this.$v.lastName.required && errors.push('Last name is required')
-        return errors
-      },
-      emailErrors () {
-        const errors = []
-        if (!this.$v.email.$dirty) return errors
-        !this.$v.email.email && errors.push('Must be a valid email address')
-        !this.$v.email.required && errors.push('Email is required')
-        return errors
-      },
-      passwordErrors () {
-        const errors = []
-        if (!this.$v.password.$dirty) return errors
-        !this.$v.password.minLength && errors.push('Must be at least 4 characters long')
-        !this.$v.password.required && errors.push('Password is required')
-        return errors
-      },
-      passwordConfirmErrors () {
-        const errors = []
-        if (!this.$v.passwordConfirm.$dirty) return errors
-
-        !this.$v.passwordConfirm.sameAsPassword && errors.push ('Passwords must be identical')
-        return errors
-      },
+    lastNameErrors() {
+      const errors = [];
+      if (!this.$v.lastName.$dirty) return errors;
+      !this.$v.firstName.alpha && errors.push("Must contain only letters");
+      !this.$v.lastName.required && errors.push("Last name is required");
+      return errors;
     },
+    emailErrors() {
+      const errors = [];
+      if (!this.$v.email.$dirty) return errors;
+      !this.$v.email.email && errors.push("Must be a valid email address");
+      !this.$v.email.required && errors.push("Email is required");
+      return errors;
+    },
+    passwordErrors() {
+      const errors = [];
+      if (!this.$v.password.$dirty) return errors;
+      !this.$v.password.minLength &&
+        errors.push("Must be at least 4 characters long");
+      !this.$v.password.required && errors.push("Password is required");
+      return errors;
+    },
+    passwordConfirmErrors() {
+      const errors = [];
+      if (!this.$v.passwordConfirm.$dirty) return errors;
 
-    methods: {
-      submit () {
-        this.$v.$touch()
-      },
+      !this.$v.passwordConfirm.sameAsPassword &&
+        errors.push("Passwords must be identical");
+      return errors;
+    }
+  },
+
+  methods: {
+    submit() {
+      this.$v.$touch();
     }
   }
+};
 </script>
 
 <style>
-
 </style>
