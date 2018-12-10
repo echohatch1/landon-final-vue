@@ -1,26 +1,27 @@
-# landon-final-vue
+#Project Requirements
 
-## Project setup
-```
-npm install
-```
+1. Effectively use conditional logic and JavaScript array methods to render large lists.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+2. Encapsulate your code as VueJS single-file components.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+3. Work with the Vue-CLI to create and manage your project within a real development toolset.
 
-### Run your tests
-```
-npm run test
-```
+4. Properly use Git for your source version control with an established record of at least 4 days of 
 
-### Lints and fixes files
-```
-npm run lint
-```
+5. commits each week from October 15th through December 6th.
+
+6. Allow communication between components using props, custom events, or local store.
+
+7. Present a form for user input that provides useful form validation and feedback.
+
+8. Create a custom directive and use it on at least one of your components.
+
+9. Use a mix of animations and transitions to enhance some aspects of your project.
+
+10. Connect to a server using HTTP and display retrieved data (use vue-resource or Axios).
+
+11. Provide at least 3 different routes with navigation between them using vue-router.
+
+12. Manage your application's state using vuex.
+
+13. Structure, document, and deploy your final project code according to common industry practices.
