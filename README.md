@@ -12,12 +12,13 @@
 5. commits each week from October 15th through December 6th.
 
 6. Allow communication between components using props, custom events, or local store.
-  [Home.vue](./src/views/Home.vue), [Favorites.vue](./src/views/Favorites.vue) 
+  [Home.vue](./src/views/Home.vue), [Favorites.vue](./src/views/Favorites.vue), [store.js](./src/store.js)
 
 7. Present a form for user input that provides useful form validation and feedback.
   [Signup.vue](./src/views/Signup.vue)
 
 8. Create a custom directive and use it on at least one of your components.
+  [main.js](./src/main.js), [Favorites.vue](./src/views/Favorites.vue), [App.vue](./src/App.vue)
 
 9. Use a mix of animations and transitions to enhance some aspects of your project.
   [Home.vue](./src/views/Home.vue), [Favorites.vue](./src/views/Favorites.vue) 
