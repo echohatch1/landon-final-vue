@@ -1,6 +1,7 @@
 #Project Requirements
 
 1. Effectively use conditional logic and JavaScript array methods to render large lists.
+  Home.vue, Favorites.vue (./src/views/home.vue)
 
 2. Encapsulate your code as VueJS single-file components.
 
