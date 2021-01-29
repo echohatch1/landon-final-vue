@@ -43,7 +43,7 @@
                           <img class="main-images" :src="result.urls.regular">
                         </div>
                         <figcaption>
-                          <h3>{{ result.description }}</h3>
+                          <h3>{{ result.alt_description }}</h3>
                         </figcaption>
                       </figure>
                     </v-flex>
@@ -113,7 +113,7 @@ export default {
       results: "",
       CLIENT_ID:
         "fc990c021cadd00f117a7b494c3ffd581a3a83c6001dd7ffd933d4415bbb653d",
-      numResults: "",
+      numResults: 10,
       select: null,
       liked: false,
       showing: true,
@@ -124,9 +124,8 @@ export default {
   },
   methods: {
     getResult(query) {
-      axios
-        .get(
-          "https://api.unsplash.com/photos/search/?query=" +
+      axios.get(
+          "https://api.unsplash.com/search/photos/?query=" +
             query +
             "&client_id=" +
             this.CLIENT_ID +
@@ -134,12 +133,11 @@ export default {
             this.numResults
         )
         .then(response => {
-          this.results = response.data;
+          this.results = response.data.results;
         });
       var i = 0;
       for (i; i < this.results.length; i++) {
-        document.getElementById(this.results[i].id).innerHTML =
-          "favorite_border";
+        document.getElementById(this.results[i].id).innerHTML = "favorite_border";
         document.getElementById(this.results[i].id).style.color = "black";
       }
 
@@ -194,14 +192,10 @@ export default {
       }, 500);
     },
     clickAnimation(result) {
-      document
-        .getElementById(result.id + "-profile")
-        .classList.add("bounce-enter-active");
+      document.getElementById(result.id + "-profile").classList.add("bounce-enter-active");
     },
     clickAnimationDownload(result) {
-      document
-        .getElementById(result.id + "-download")
-        .classList.add("bounce-enter-active");
+      document.getElementById(result.id + "-download").classList.add("bounce-enter-active");
     }
   },
   watch: {
@@ -302,8 +296,11 @@ export default {
   ); /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
   -ms-transform: translateY(-50%); /* IE 9 */
   transform: translateY(-50%); /* IE 10, Fx 16+, Op 12.1+ */
-  height: 100%;
-  width: auto;
+  /* height: 100%;
+  width: auto; */
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .avatar {
