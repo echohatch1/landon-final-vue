@@ -12,9 +12,9 @@
                       <div class="crop">
                         <img class="main-images" :src="data.urls.regular">
                       </div>
-                      <figcaption>
+                      <!-- <figcaption>
                         <h3>{{ data.description }}</h3>
-                      </figcaption>
+                      </figcaption> -->
                     </figure>
                   </v-flex>
                 </v-container>
@@ -200,8 +200,11 @@ export default {
   ); /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
   -ms-transform: translateY(-50%); /* IE 9 */
   transform: translateY(-50%); /* IE 10, Fx 16+, Op 12.1+ */
-  height: 100%;
-  width: auto;
+  /* height: 100%;
+  width: auto; */
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 .avatar {
   padding-left: 0;

@@ -42,9 +42,9 @@
                         <div class="crop">
                           <img class="main-images" :src="result.urls.regular">
                         </div>
-                        <figcaption>
+                        <!-- <figcaption>
                           <h3>{{ result.alt_description }}</h3>
-                        </figcaption>
+                        </figcaption> -->
                       </figure>
                     </v-flex>
                   </v-container>
